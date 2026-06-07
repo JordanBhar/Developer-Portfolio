@@ -1,38 +1,8 @@
+import { aboutData } from '../../../../data/about';
 import '../styles/career-timeline.css';
 
 const CareerTimeline = () => {
-  const milestones = [
-    {
-      year: '2020',
-      title: 'Computer Science Student',
-      description: 'Began academic journey in software engineering and systems design',
-      icon: '▸',
-    },
-    {
-      year: '2022',
-      title: 'Mobile Developer',
-      description: 'Specialized in iOS development and mobile application architecture',
-      icon: '◆',
-    },
-    {
-      year: '2023',
-      title: 'Sheridan Graduate',
-      description: 'Graduated with expertise in modern software development practices',
-      icon: '✦',
-    },
-    {
-      year: '2024',
-      title: 'Cloud Engineer',
-      description: 'Architected scalable cloud infrastructure and deployment pipelines',
-      icon: '★',
-    },
-    {
-      year: '2025',
-      title: 'AI/ML Infrastructure',
-      description: 'Expanding expertise in machine learning systems and AI deployment',
-      icon: '◈',
-    },
-  ];
+  const milestones = aboutData.careerTimeline;
 
   return (
     <div className="career-timeline-container">

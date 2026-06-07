@@ -38,3 +38,43 @@ export interface AnimationConfig {
   repeat?: number;
   yoyo?: boolean;
 }
+
+export interface AboutMissionProfile {
+  summary: string;
+  specializations: string[];
+  objectives: {
+    title: string;
+    description: string;
+  }[];
+  engineeringFocus: string[];
+}
+
+export interface AboutPersonnelProfile {
+  id: string;
+  name: string;
+  designation: string;
+  clearanceLevel: string;
+  status: 'ACTIVE' | 'ONLINE' | 'OPERATIONAL';
+}
+
+export interface AboutSystemMetric {
+  id: string;
+  label: string;
+  value: string;
+  accentClass: 'teal' | 'cyan' | 'light-cyan';
+  progress: number; // 0-100
+}
+
+export interface AboutCareerMilestone {
+  year: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export interface AboutSection {
+  personnelProfile: AboutPersonnelProfile;
+  missionProfile: AboutMissionProfile;
+  systemMetrics: AboutSystemMetric[];
+  careerTimeline: AboutCareerMilestone[];
+}

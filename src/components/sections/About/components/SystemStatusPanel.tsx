@@ -1,12 +1,8 @@
+import { aboutData } from '../../../../data/about';
 import '../styles/system-status.css';
 
 const SystemStatusPanel = () => {
-  const metrics = [
-    { label: 'Projects Deployed', value: '15+', accentClass: 'teal', progress: 75 },
-    { label: 'Cloud Systems Online', value: '2', accentClass: 'cyan', progress: 100 },
-    { label: 'Technologies Mastered', value: '20+', accentClass: 'light-cyan', progress: 85 },
-    { label: 'Mission Status', value: 'ACTIVE', accentClass: 'cyan', progress: 100 },
-  ];
+  const metrics = aboutData.systemMetrics;
 
   return (
     <div className="space-y-4">
@@ -16,7 +12,7 @@ const SystemStatusPanel = () => {
       {/* Status Modules */}
       <div className="space-y-3">
         {metrics.map((metric) => (
-          <div key={metric.label} className="status-module">
+          <div key={metric.id} className="status-module">
             <div className="module-index">
               {metric.label}
             </div>

@@ -1,7 +1,10 @@
 import { Images } from '../../../../constants/app';
+import { aboutData } from '../../../../data/about';
 import '../styles/holographic.css';
 
 const PersonnelProfile = () => {
+  const profile = aboutData.personnelProfile;
+
   return (
     <div className="flex flex-col items-center gap-6">
       {/* Holographic Frame Container */}
@@ -30,20 +33,20 @@ const PersonnelProfile = () => {
           📡 PERSONNEL_ID
         </div>
         <div className="personnel-id-name font-mono">
-          JORDAN_BHAR
+          {profile.name}
         </div>
         <div className="flex items-center justify-between">
           <span className="personnel-status">Designation</span>
-          <span className="text-accent-cyan text-xs font-mono">ENGINEER</span>
+          <span className="text-accent-cyan text-xs font-mono">{profile.designation}</span>
         </div>
         <div className="flex items-center justify-between">
           <span className="personnel-status">Clearance</span>
-          <span className="text-accent-light-cyan text-xs font-mono">LEVEL_5</span>
+          <span className="text-accent-light-cyan text-xs font-mono">{profile.clearanceLevel}</span>
         </div>
         <div className="flex items-center gap-2 pt-2 border-t border-border-dark/30">
           <div className="status-indicator">
             <div className="status-dot" />
-            OPERATIONAL
+            {profile.status}
           </div>
         </div>
       </div>
