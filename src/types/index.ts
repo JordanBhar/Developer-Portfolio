@@ -13,7 +13,7 @@ export interface Project {
 export interface Skill {
   id: string;
   name: string;
-  category: 'mobile' | 'frontend' | 'backend' | 'cloud' | 'ai';
+  category: string;
   experience: number; // years
   proficiency: 'beginner' | 'intermediate' | 'advanced' | 'expert';
   projects?: string[];

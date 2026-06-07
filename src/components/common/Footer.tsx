@@ -10,7 +10,7 @@ const Footer = () => {
           {/* Left Section */}
           <div>
             <h3 className="text-lg font-bold font-mono text-accent-teal mb-2">
-              Claude_Design
+              Jordan Bhar
             </h3>
             <p className="text-text-muted text-sm">
               Building scalable software and innovative solutions.
@@ -45,7 +45,7 @@ const Footer = () => {
 
           {/* Right Section */}
           <div className="text-right text-text-muted text-sm">
-            <p>&copy; {currentYear} Claude Design. All rights reserved.</p>
+            <p>&copy; {currentYear} Jordan Bhar. All rights reserved.</p>
           </div>
         </div>
       </div>
