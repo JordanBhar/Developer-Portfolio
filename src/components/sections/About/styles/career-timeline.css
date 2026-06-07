@@ -1,0 +1,238 @@
+/* Career Timeline - Constellation Styling */
+
+@keyframes starTwinkle {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.6);
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+  }
+}
+
+@keyframes constellationGlow {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes pathFlow {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 100% center;
+  }
+}
+
+/* Timeline Container */
+.career-timeline-container {
+  position: relative;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.timeline-header::before,
+.timeline-header::after {
+  content: '◆';
+  position: absolute;
+  color: rgba(6, 182, 212, 0.5);
+  font-size: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.timeline-header::before {
+  left: 0;
+}
+
+.timeline-header::after {
+  right: 0;
+}
+
+.timeline-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(6, 182, 212, 0.8);
+  font-family: 'JetBrains Mono', monospace;
+  padding: 0 1rem;
+}
+
+/* Constellation Timeline */
+.constellation-timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+/* Timeline Node */
+.timeline-node {
+  position: relative;
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.timeline-node:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timeline-node:nth-child(even) .node-content {
+  text-align: right;
+}
+
+/* Node Circle (Star) */
+.node-circle {
+  position: relative;
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(20, 184, 166, 0.1));
+  border: 2px solid rgba(6, 182, 212, 0.5);
+  border-radius: 50%;
+  animation: starTwinkle 3s ease-in-out infinite;
+}
+
+.node-circle::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 1px solid rgba(6, 182, 212, 0.2);
+  border-radius: 50%;
+  animation: constellationGlow 4s ease-in-out infinite;
+}
+
+.node-icon {
+  font-size: 1.5rem;
+  color: #06b6d4;
+  text-shadow: 0 0 15px rgba(6, 182, 212, 0.8);
+  z-index: 1;
+}
+
+/* Connecting Line */
+.node-connector {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(6, 182, 212, 0.5), transparent);
+  animation: pathFlow 3s ease-in-out infinite;
+}
+
+/* Node Content */
+.node-content {
+  flex: 1;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(20, 184, 166, 0.04));
+  border: 1px solid rgba(6, 182, 212, 0.2);
+  border-left: 3px solid rgba(6, 182, 212, 0.4);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.timeline-node:nth-child(even) .node-content {
+  border-left: none;
+  border-right: 3px solid rgba(6, 182, 212, 0.4);
+}
+
+.node-content:hover {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(20, 184, 166, 0.08));
+  border-color: rgba(6, 182, 212, 0.4);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Year Badge */
+.node-year {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(6, 182, 212, 0.8);
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 0.5rem;
+}
+
+.node-year::before {
+  content: '[';
+  margin-right: 4px;
+  color: rgba(6, 182, 212, 0.5);
+}
+
+.node-year::after {
+  content: ']';
+  margin-left: 4px;
+  color: rgba(6, 182, 212, 0.5);
+}
+
+/* Title */
+.node-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f8fafc;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+/* Description */
+.node-description {
+  font-size: 0.875rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .timeline-node {
+    flex-direction: column !important;
+  }
+
+  .timeline-node:nth-child(even) {
+    flex-direction: column !important;
+  }
+
+  .node-content {
+    border-left: 3px solid rgba(6, 182, 212, 0.4) !important;
+    border-right: none !important;
+  }
+
+  .node-content:nth-child(even) {
+    border-left: 3px solid rgba(6, 182, 212, 0.4) !important;
+    border-right: none !important;
+  }
+
+  .timeline-node:nth-child(even) .node-content {
+    text-align: left;
+    border-left: 3px solid rgba(6, 182, 212, 0.4) !important;
+  }
+
+  .node-circle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .node-icon {
+    font-size: 1.25rem;
+  }
+}

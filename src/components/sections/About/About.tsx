@@ -1,6 +1,7 @@
 import PersonnelProfile from './components/PersonnelProfile';
 import MissionProfileContent from './components/MissionProfileContent';
 import SystemStatusPanel from './components/SystemStatusPanel';
+import CareerTimeline from './components/CareerTimeline';
 
 const About = () => {
   return (
@@ -12,7 +13,7 @@ const About = () => {
         </h2>
 
         {/* Three-Column Mission Control Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 mb-20">
           {/* Left Column: Personnel Profile */}
           <div className="flex flex-col justify-start">
             <PersonnelProfile />
@@ -27,6 +28,11 @@ const About = () => {
           <div className="flex flex-col justify-start">
             <SystemStatusPanel />
           </div>
+        </div>
+
+        {/* Career Timeline */}
+        <div className="max-w-4xl mx-auto">
+          <CareerTimeline />
         </div>
       </div>
     </section>
