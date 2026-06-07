@@ -1,18 +1,22 @@
 import { Canvas } from '@react-three/fiber';
 import { Preload } from '@react-three/drei';
 import { Skill } from '@/types';
-import { skillsByCategory } from '@/data/skills';
+import { skillsByCategory, categories } from '@/data/skills';
 import { Galaxy } from './Galaxy';
 import { CameraController } from './CameraController';
 import { Sun } from './Sun';
-import { Suspense } from 'react';
+import { Suspense, useMemo } from 'react';
 
 interface UniverseCanvasProps {
   onHover: (skill: Skill | null) => void;
 }
 
 export const UniverseCanvas = ({ onHover }: UniverseCanvasProps) => {
-  const categories = ['mobile', 'frontend', 'backend', 'cloud', 'ai'] as const;
+  // Dynamically get categories that have skills
+  const activeCategories = useMemo(
+    () => categories.filter((cat) => skillsByCategory(cat.id as Skill['category']).length > 0),
+    []
+  );
 
   return (
     <div className="relative w-full h-full">
@@ -41,13 +45,13 @@ export const UniverseCanvas = ({ onHover }: UniverseCanvasProps) => {
 
       <Suspense fallback={null}>
         <Sun />
-        {categories.map((category, index) => (
+        {activeCategories.map((categoryMeta, index) => (
           <Galaxy
-            key={category}
-            category={category}
-            skills={skillsByCategory(category)}
+            key={categoryMeta.id}
+            categoryMeta={categoryMeta}
+            skills={skillsByCategory(categoryMeta.id as Skill['category'])}
             categoryIndex={index}
-            totalCategories={categories.length}
+            totalCategories={activeCategories.length}
             onHover={onHover}
           />
         ))}

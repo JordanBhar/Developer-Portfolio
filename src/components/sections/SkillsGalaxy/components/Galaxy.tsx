@@ -3,6 +3,7 @@ import { useFrame } from '@react-three/fiber';
 import { Html } from '@react-three/drei';
 import * as THREE from 'three';
 import { Skill } from '@/types';
+import { CategoryMetadata } from '@/data/skills';
 import {
   generateGalaxyStars,
   generateGalaxyCore,
@@ -12,31 +13,15 @@ import {
 import { Planet } from './Planet';
 
 interface GalaxyProps {
-  category: Skill['category'];
+  categoryMeta: CategoryMetadata;
   skills: Skill[];
   categoryIndex: number;
   totalCategories: number;
   onHover: (skill: Skill | null) => void;
 }
 
-const categoryNames: Record<string, string> = {
-  mobile: '📱 Mobile Development',
-  frontend: '💻 Frontend',
-  backend: '⚙️ Backend',
-  cloud: '☁️ Cloud & DevOps',
-  ai: '🤖 AI & ML',
-};
-
-const categoryEmojis: Record<string, string> = {
-  mobile: '📱',
-  frontend: '💻',
-  backend: '⚙️',
-  cloud: '☁️',
-  ai: '🤖',
-};
-
 export const Galaxy = ({
-  category,
+  categoryMeta,
   skills,
   categoryIndex,
   totalCategories,
@@ -78,7 +63,7 @@ export const Galaxy = ({
   // No auto-rotation - user controls camera instead
   // This keeps the view stable and recruiter-friendly
 
-  const categoryColor = getCategoryColor(category);
+  const categoryColor = getCategoryColor(categoryMeta.id);
 
   return (
     <group ref={groupRef}>
@@ -90,7 +75,7 @@ export const Galaxy = ({
       >
         <div className="text-center pointer-events-none">
           <div className="text-2xl font-mono font-bold text-white drop-shadow-lg mb-1">
-            {categoryNames[category]}
+            {categoryMeta.emoji} {categoryMeta.displayName}
           </div>
           <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-accent-cyan to-transparent mx-auto rounded" />
         </div>

@@ -1,5 +1,20 @@
 import { Skill } from '@/types';
 
+export interface CategoryMetadata {
+  id: string;
+  displayName: string;
+  emoji: string;
+  color?: string; // Will be auto-generated if not provided
+}
+
+export const categories: CategoryMetadata[] = [
+  { id: 'mobile', displayName: 'Mobile Development', emoji: '📱' },
+  { id: 'frontend', displayName: 'Frontend', emoji: '💻' },
+  { id: 'backend', displayName: 'Backend', emoji: '⚙️' },
+  { id: 'cloud', displayName: 'Cloud & DevOps', emoji: '☁️' },
+  { id: 'ai', displayName: 'AI & ML', emoji: '🤖' },
+];
+
 export const skills: Skill[] = [
   // Mobile
   {
@@ -23,7 +38,7 @@ export const skills: Skill[] = [
     experience: 2,
     proficiency: 'advanced',
   },
-  
+
   // Frontend
   {
     id: 'react',
@@ -106,6 +121,9 @@ export const skills: Skill[] = [
     proficiency: 'intermediate',
   },
 ];
+
+export const getCategoryMetadata = (categoryId: string): CategoryMetadata | undefined =>
+  categories.find((cat) => cat.id === categoryId);
 
 export const skillsByCategory = (category: Skill['category']) =>
   skills.filter((skill) => skill.category === category);

@@ -107,18 +107,69 @@ export const calculateOrbitPosition = (
   };
 };
 
-// Get color for a category
-export const getCategoryColor = (
-  category: 'mobile' | 'frontend' | 'backend' | 'cloud' | 'ai'
-): string => {
-  const colors: Record<string, string> = {
-    mobile: '#FF6B9D', // Pink
-    frontend: '#A78BFA', // Purple
-    backend: '#06B6D4', // Cyan
-    cloud: '#3B82F6', // Blue
-    ai: '#FBBF24', // Gold
+// Generate unique color based on category ID
+const generateColorFromId = (id: string): string => {
+  // Create a deterministic hash from the category ID
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) {
+    const char = id.codePointAt(i) || 0;
+    hash = (hash << 5) - hash + char;
+    hash = hash & hash; // Convert to 32-bit integer
+  }
+
+  // Use hash to generate hue (0-360)
+  const hue = Math.abs(hash) % 360;
+  // Saturation: 70-90 for vibrant colors
+  const saturation = 70 + (Math.abs(hash >> 8) % 20);
+  // Lightness: 50-60 for good visibility
+  const lightness = 50 + (Math.abs(hash >> 16) % 10);
+
+  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+};
+
+// Convert HSL to hex for consistency with Three.js
+const hslToHex = (hsl: string): string => {
+  const regex = /hsl\((\d+),\s*(\d+)%,\s*(\d+)%\)/;
+  const match = regex.exec(hsl);
+  if (!match) return '#06B6D4';
+
+  const h = Number.parseInt(match[1], 10) / 360;
+  const s = Number.parseInt(match[2], 10) / 100;
+  const l = Number.parseInt(match[3], 10) / 100;
+
+  let r, g, b;
+
+  if (s === 0) {
+    r = g = b = l;
+  } else {
+    const hue2rgb = (p: number, q: number, t: number) => {
+      if (t < 0) t += 1;
+      if (t > 1) t -= 1;
+      if (t < 1 / 6) return p + (q - p) * 6 * t;
+      if (t < 1 / 2) return q;
+      if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+      return p;
+    };
+
+    const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+    const p = 2 * l - q;
+    r = hue2rgb(p, q, h + 1 / 3);
+    g = hue2rgb(p, q, h);
+    b = hue2rgb(p, q, h - 1 / 3);
+  }
+
+  const toHex = (x: number) => {
+    const hex = Math.round(x * 255).toString(16);
+    return hex.length === 1 ? '0' + hex : hex;
   };
-  return colors[category] || '#06B6D4';
+
+  return `#${toHex(r)}${toHex(g)}${toHex(b)}`.toUpperCase();
+};
+
+// Get color for a category - generates unique color from category ID
+export const getCategoryColor = (categoryId: string): string => {
+  const hslColor = generateColorFromId(categoryId);
+  return hslToHex(hslColor);
 };
 
 // Proficiency to size mapping - enlarged for better visibility
