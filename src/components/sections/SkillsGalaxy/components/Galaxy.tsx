@@ -84,7 +84,7 @@ export const Galaxy = ({
     <group ref={groupRef}>
       {/* Category label - below galaxy center */}
       <Html
-        position={[galaxyCenter.x, galaxyCenter.y - 15, galaxyCenter.z]}
+        position={[galaxyCenter.x-3, galaxyCenter.y, galaxyCenter.z]}
         scale={1}
         occlude={false}
       >

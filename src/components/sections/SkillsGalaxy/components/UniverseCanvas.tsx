@@ -4,6 +4,7 @@ import { Skill } from '@/types';
 import { skillsByCategory } from '@/data/skills';
 import { Galaxy } from './Galaxy';
 import { CameraController } from './CameraController';
+import { Sun } from './Sun';
 import { Suspense } from 'react';
 
 interface UniverseCanvasProps {
@@ -39,6 +40,7 @@ export const UniverseCanvas = ({ onHover }: UniverseCanvasProps) => {
       <pointLight position={[-50, -30, 50]} intensity={0.4} color="#ff6b9d" />
 
       <Suspense fallback={null}>
+        <Sun />
         {categories.map((category, index) => (
           <Galaxy
             key={category}
