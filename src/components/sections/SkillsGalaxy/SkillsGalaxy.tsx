@@ -15,13 +15,13 @@ const SkillsGalaxy = () => {
       </div>
 
       {/* Canvas Container - Full remaining height */}
-      <div className="relative h-[calc(100vh-200px)] m-20 bg-gradient-to-b from-dark-primary via-dark-primary to-dark-secondary rounded-lg border-4 border-border-dark/30">
+      <div className="relative h-[calc(100vh-200px)] z-10 m-28 bg-gradient-to-b from-dark-primary via-dark-primary to-dark-secondary rounded-lg border-4 border-border-dark/30">
         <UniverseCanvas onHover={setHoveredSkill} />
       </div>
 
       {/* Skill Info Panel - Floats above canvas */}
       {hoveredSkill && (
-        <div className="absolute bottom-28 left-28 z-30 pointer-events-auto">
+        <div className="absolute bottom-32 left-32 z-30 pointer-events-auto">
           <div className="bg-gradient-to-br from-dark-primary/95 to-dark-secondary/95 border border-accent-cyan/50 rounded-lg p-6 backdrop-blur-md shadow-2xl max-w-sm">
             <h3 className="text-xl font-mono text-accent-teal mb-3 text-center">
               {hoveredSkill.name}
@@ -35,7 +35,7 @@ const SkillsGalaxy = () => {
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-text-muted">Proficiency</span>
+                <span className="text-text-muted mr-2">Proficiency</span>
                 <span className="text-accent-teal font-semibold capitalize bg-accent-teal/20 px-3 py-1 rounded">
                   {hoveredSkill.proficiency}
                 </span>

@@ -82,17 +82,17 @@ export const Galaxy = ({
 
   return (
     <group ref={groupRef}>
-      {/* Category label */}
+      {/* Category label - below galaxy center */}
       <Html
-        position={[galaxyCenter.x, galaxyCenter.y - 12, galaxyCenter.z]}
-        distanceFactor={1}
+        position={[galaxyCenter.x, galaxyCenter.y - 15, galaxyCenter.z]}
+        scale={1}
         occlude={false}
       >
-        <div className="text-center">
-          <div className="text-3xl font-mono font-bold text-white drop-shadow-lg mb-1">
+        <div className="text-center pointer-events-none">
+          <div className="text-2xl font-mono font-bold text-white drop-shadow-lg mb-1">
             {categoryNames[category]}
           </div>
-          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent-cyan to-transparent mx-auto" />
+          <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-accent-cyan to-transparent mx-auto rounded" />
         </div>
       </Html>
 
@@ -140,29 +140,35 @@ export const Galaxy = ({
       </points>
 
       {/* Skills as orbiting planets - organized in clusters */}
-      {skills
-        .sort((a, b) => {
-          // Sort by proficiency level (expert first) and then by experience
-          const proficiencyOrder = { expert: 0, advanced: 1, intermediate: 2, beginner: 3 };
+      {useMemo(() => {
+        const proficiencyOrder = { expert: 0, advanced: 1, intermediate: 2, beginner: 3 };
+
+        // Sort once and keep the sorted array
+        const sortedSkills = [...skills].sort((a, b) => {
           const aPrio = proficiencyOrder[a.proficiency] || 4;
           const bPrio = proficiencyOrder[b.proficiency] || 4;
           if (aPrio !== bPrio) return aPrio - bPrio;
           return b.experience - a.experience;
-        })
-        .map((skill, index) => {
-          // Organize into orbital rings by proficiency
-          const proficiencyOrder = { expert: 0, advanced: 1, intermediate: 2, beginner: 3 };
-          const ring = proficiencyOrder[skill.proficiency] || 3;
+        });
 
-          // Base radius for each ring
-          const baseRadius = 6 + ring * 2.5;
-          // Number of skills in this ring (approximate)
-          const skillsInRing = skills.filter(
+        // Group skills by ring
+        const skillsByRing: Record<number, typeof sortedSkills> = {};
+        for (let ring = 0; ring <= 3; ring++) {
+          skillsByRing[ring] = sortedSkills.filter(
             (s) => proficiencyOrder[s.proficiency] === ring
-          ).length;
-          const ringIndex = skills
-            .filter((s) => proficiencyOrder[s.proficiency] === ring)
-            .indexOf(skill);
+          );
+        }
+
+        // Render planets
+        return sortedSkills.map((skill) => {
+          const ring = proficiencyOrder[skill.proficiency] || 3;
+          const ringSkills = skillsByRing[ring];
+          const ringIndex = ringSkills.indexOf(skill);
+          const skillsInRing = ringSkills.length;
+
+          const baseRadius = 6 + ring * 2.5;
+          const speed = 0.0015 + ring * 0.0005;
+          const initialAngle = (ringIndex / Math.max(1, skillsInRing)) * Math.PI * 2;
 
           return (
             <Planet
@@ -170,13 +176,14 @@ export const Galaxy = ({
               skill={skill}
               galaxyCenter={galaxyCenter}
               orbitRadius={baseRadius}
-              speed={0.0015 + ring * 0.0005}
-              initialAngle={(ringIndex / Math.max(1, skillsInRing)) * Math.PI * 2}
+              speed={speed}
+              initialAngle={initialAngle}
               color={categoryColor}
               onHover={onHover}
             />
           );
-        })}
+        });
+      }, [skills, galaxyCenter, categoryColor, onHover])}
     </group>
   );
 };

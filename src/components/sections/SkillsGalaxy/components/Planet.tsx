@@ -94,13 +94,13 @@ export const Planet = ({
           <meshBasicMaterial color="white" transparent opacity={hovered ? 0.6 : 0.3} />
         </Sphere>
 
-        {/* Skill name label - Always visible */}
-        <Html position={[0, nodeSize * 1.5, 0]} distanceFactor={1} occlude={false}>
+        {/* Skill name label - Always visible, positioned below planet */}
+        <Html position={[0, -nodeSize * 1.8, 0]} scale={1} occlude={false}>
           <div className="text-center pointer-events-none">
-            <div className={`font-mono font-bold transition-all duration-200 whitespace-nowrap ${
+            <div className={`font-mono font-bold transition-all duration-300 whitespace-nowrap drop-shadow-md ${
               hovered
-                ? 'text-sm text-white drop-shadow-lg'
-                : 'text-xs text-gray-200'
+                ? 'text-sm text-white'
+                : 'text-xs text-gray-300'
             }`}>
               {skill.name}
             </div>

@@ -16,7 +16,7 @@ export const UniverseCanvas = ({ onHover }: UniverseCanvasProps) => {
   return (
     <div className="relative w-full h-full">
       {/* Instructions overlay - positioned absolutely over canvas */}
-      <div className="absolute top-4 right-4 z-50 pointer-events-none">
+      <div className="absolute top-4 right-4 z-10 pointer-events-none">
         <div className="bg-dark-primary/80 border border-accent-cyan/30 rounded-lg px-4 py-3 backdrop-blur-sm">
           <p className="text-sm text-text-muted whitespace-nowrap">
             <span className="inline-block mr-3">↖️ Click & drag to pan</span>
