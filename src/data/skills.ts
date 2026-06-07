@@ -23,6 +23,7 @@ export const skills: Skill[] = [
     experience: 2,
     proficiency: 'advanced',
   },
+  
   // Frontend
   {
     id: 'react',

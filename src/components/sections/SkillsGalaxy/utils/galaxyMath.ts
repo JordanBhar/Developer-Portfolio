@@ -18,7 +18,7 @@ export const generateGalaxyStars = (
   centerX: number,
   centerY: number,
   centerZ: number,
-  scale: number = 1
+  scale: number = 1.5
 ): { positions: Float32Array; colors: Float32Array } => {
   const positions = new Float32Array(count * 3);
   const colors = new Float32Array(count * 3);

@@ -5,9 +5,9 @@ const MissionProfileContent = () => {
   const mission = aboutData.missionProfile;
 
   return (
-    <div className="space-y-6 mt-2">
+    <div className="space-y-6 p-6">
       {/* Mission Summary */}
-      <div className="mission-summary">
+      <div className="mission-summary ">
         <div className="mission-title">MISSION_PROFILE</div>
         <p className="mission-body">{mission.summary}</p>
       </div>
