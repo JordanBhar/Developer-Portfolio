@@ -1,0 +1,185 @@
+/* Motion Effects and Polish */
+
+@keyframes smoothGlowPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+    filter: brightness(1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.6);
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes subtleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes hoverLift {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes borderGlow {
+  0%, 100% {
+    border-color: rgba(6, 182, 212, 0.3);
+  }
+  50% {
+    border-color: rgba(6, 182, 212, 0.7);
+  }
+}
+
+@keyframes labelFloat {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+
+/* Enhanced Personnel Profile Hover */
+.holographic-frame:hover {
+  animation: smoothGlowPulse 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.5));
+}
+
+.personnel-id-display:hover {
+  animation: subtleFloat 2s ease-in-out infinite;
+  border-color: rgba(6, 182, 212, 0.6);
+}
+
+/* Mission Section Hover Effects */
+.terminal-section:hover,
+.mission-summary:hover {
+  animation: smoothGlowPulse 1.5s ease-in-out infinite;
+  transform: translateX(4px);
+  transition: all 0.3s ease;
+}
+
+.terminal-list-item:hover {
+  animation: labelFloat 0.8s ease-in-out;
+  transform: scale(1.05);
+}
+
+/* Status Module Polish */
+.status-module:hover {
+  animation: hoverLift 0.3s ease-out forwards;
+  box-shadow: 0 8px 25px rgba(6, 182, 212, 0.25) !important;
+}
+
+.status-module:hover .module-value {
+  filter: drop-shadow(0 0 25px rgba(6, 182, 212, 0.8));
+}
+
+.status-module:hover .progress-fill {
+  animation: smoothGlowPulse 1s ease-in-out infinite;
+}
+
+/* Timeline Node Hover Effects */
+.node-content:hover {
+  animation: subtleFloat 0.8s ease-in-out;
+}
+
+.timeline-node:hover .node-circle {
+  filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.8));
+  animation: smoothGlowPulse 1s ease-in-out infinite;
+}
+
+/* Data Connection Particles Enhancement */
+.data-connections-svg:hover {
+  opacity: 0.6 !important;
+}
+
+.data-connections-svg:hover .connection-line {
+  filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.8));
+  stroke-width: 1.5;
+}
+
+.data-connections-svg:hover .pulse-point {
+  animation-duration: 1s;
+}
+
+/* HUD Widget Polish */
+.hud-widget:hover {
+  animation: smoothGlowPulse 1s ease-in-out infinite;
+  transform: scale(1.02);
+}
+
+.hud-widget:hover .hud-value {
+  filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.8));
+}
+
+.center-hud:hover {
+  opacity: 0.6 !important;
+}
+
+.radar-display:hover .radar-sweep {
+  animation-duration: 2s;
+}
+
+/* Smooth Transitions for All Interactive Elements */
+.status-module,
+.terminal-section,
+.mission-summary,
+.node-content,
+.hud-widget,
+.terminal-list-item,
+.personnel-id-display,
+.holographic-frame {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* GPU-Optimized Animations */
+.holographic-frame,
+.status-module,
+.node-content,
+.hud-widget {
+  will-change: transform;
+}
+
+/* Focus States for Accessibility */
+.terminal-list-item:focus,
+.status-module:focus {
+  outline: 2px solid rgba(6, 182, 212, 0.6);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion Respect */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .holographic-frame:hover,
+  .personnel-id-display:hover,
+  .terminal-section:hover,
+  .mission-summary:hover,
+  .status-module:hover,
+  .timeline-node:hover .node-circle,
+  .hud-widget:hover {
+    animation: none !important;
+  }
+}
+
+/* Parallax-Ready Classes */
+.parallax-slow {
+  will-change: transform;
+}
+
+.parallax-fast {
+  will-change: transform;
+}

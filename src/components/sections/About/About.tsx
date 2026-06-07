@@ -5,6 +5,7 @@ import CareerTimeline from './components/CareerTimeline';
 import AtmosphereLayer from './components/AtmosphereLayer';
 import HUDElements from './components/HUDElements';
 import DataConnections from './components/DataConnections';
+import './styles/motion-effects.css';
 
 const About = () => {
   return (
