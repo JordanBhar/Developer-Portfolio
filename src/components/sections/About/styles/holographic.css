@@ -1,0 +1,172 @@
+/* Holographic Profile Frame */
+
+@keyframes scanlines {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes holographicGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.5),
+                inset 0 0 20px rgba(6, 182, 212, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(6, 182, 212, 0.8),
+                inset 0 0 30px rgba(6, 182, 212, 0.2);
+  }
+}
+
+.holographic-frame {
+  position: relative;
+  border: 2px solid rgba(6, 182, 212, 0.6);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(20, 184, 166, 0.05));
+  animation: holographicGlow 3s ease-in-out infinite;
+}
+
+/* HUD Corner Brackets */
+.holographic-frame::before,
+.holographic-frame::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(6, 182, 212, 0.8);
+}
+
+.holographic-frame::before {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+  box-shadow: inset 2px 2px 0 rgba(6, 182, 212, 0.5);
+}
+
+.holographic-frame::after {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+  box-shadow: inset -2px -2px 0 rgba(6, 182, 212, 0.5);
+}
+
+/* Top-right and bottom-left corners */
+.holographic-frame-top-right,
+.holographic-frame-bottom-left {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(6, 182, 212, 0.8);
+}
+
+.holographic-frame-top-right {
+  top: -2px;
+  right: -2px;
+  border-left: none;
+  border-bottom: none;
+  box-shadow: inset -2px 2px 0 rgba(6, 182, 212, 0.5);
+}
+
+.holographic-frame-bottom-left {
+  bottom: -2px;
+  left: -2px;
+  border-right: none;
+  border-top: none;
+  box-shadow: inset 2px -2px 0 rgba(6, 182, 212, 0.5);
+}
+
+/* Scanline effect overlay */
+.scanline-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(6, 182, 212, 0.05) 0px,
+    rgba(6, 182, 212, 0.05) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  animation: scanlines 8s linear infinite;
+}
+
+/* Personnel ID Data Display */
+.personnel-id-display {
+  position: relative;
+  background: linear-gradient(135deg, rgba(26, 29, 36, 0.9), rgba(22, 27, 34, 0.9));
+  border: 1px solid rgba(6, 182, 212, 0.4);
+  border-top: 2px solid rgba(6, 182, 212, 0.6);
+}
+
+.personnel-id-display::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.8), transparent);
+}
+
+.personnel-id-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: rgba(6, 182, 212, 0.8);
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+}
+
+.personnel-id-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #f8fafc;
+  text-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+}
+
+.personnel-status {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: rgba(148, 163, 184, 0.8);
+  text-transform: uppercase;
+}
+
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: 3px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background: #06b6d4;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.8);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.8);
+  }
+  50% {
+    opacity: 0.5;
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+  }
+}

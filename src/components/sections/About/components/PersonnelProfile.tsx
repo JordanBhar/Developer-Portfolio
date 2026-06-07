@@ -1,22 +1,51 @@
 import { Images } from '../../../../constants/app';
+import '../styles/holographic.css';
 
 const PersonnelProfile = () => {
   return (
     <div className="flex flex-col items-center gap-6">
-      {/* Profile Image Container */}
-      <div className="w-80 h-80 bg-gradient-to-br from-accent-teal to-accent-cyan rounded-lg mx-auto animate-float">
-        <img
-          src={Images.aboutMe}
-          alt="Personnel Profile"
-          className="w-full h-full object-cover rounded-lg border-4 border-border-light"
-        />
+      {/* Holographic Frame Container */}
+      <div className="relative w-80 h-80 mx-auto animate-float">
+        {/* Main frame with corners */}
+        <div className="holographic-frame relative w-full h-full overflow-hidden">
+          {/* Corner brackets */}
+          <div className="holographic-frame-top-right absolute" />
+          <div className="holographic-frame-bottom-left absolute" />
+
+          {/* Profile Image */}
+          <img
+            src={Images.aboutMe}
+            alt="Personnel Profile"
+            className="w-full h-full object-cover"
+          />
+
+          {/* Scanline effect overlay */}
+          <div className="scanline-effect" />
+        </div>
       </div>
 
-      {/* Personnel ID Badge */}
-      <div className="w-full max-w-80 p-4 bg-card-darker border border-border-dark/50 rounded-lg text-center space-y-2">
-        <div className="text-accent-cyan text-sm font-mono">PERSONNEL_ID</div>
-        <div className="text-text-primary font-mono text-lg font-bold">JORDAN_BHAR</div>
-        <div className="text-text-muted text-xs font-mono">Status: ACTIVE</div>
+      {/* Personnel ID Display */}
+      <div className="w-full max-w-80 personnel-id-display rounded-lg p-4 space-y-3">
+        <div className="personnel-id-label">
+          📡 PERSONNEL_ID
+        </div>
+        <div className="personnel-id-name font-mono">
+          JORDAN_BHAR
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="personnel-status">Designation</span>
+          <span className="text-accent-cyan text-xs font-mono">ENGINEER</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="personnel-status">Clearance</span>
+          <span className="text-accent-light-cyan text-xs font-mono">LEVEL_5</span>
+        </div>
+        <div className="flex items-center gap-2 pt-2 border-t border-border-dark/30">
+          <div className="status-indicator">
+            <div className="status-dot" />
+            OPERATIONAL
+          </div>
+        </div>
       </div>
     </div>
   );
