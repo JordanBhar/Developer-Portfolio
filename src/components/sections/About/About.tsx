@@ -4,12 +4,14 @@ import SystemStatusPanel from './components/SystemStatusPanel';
 import CareerTimeline from './components/CareerTimeline';
 import AtmosphereLayer from './components/AtmosphereLayer';
 import HUDElements from './components/HUDElements';
+import DataConnections from './components/DataConnections';
 
 const About = () => {
   return (
     <section id="about" className="relative min-h-screen bg-dark-secondary py-20" style={{ opacity: 0 }}>
       <AtmosphereLayer />
       <HUDElements />
+      <DataConnections />
       <div className="relative max-w-7xl mx-auto px-6 z-10">
         {/* Section Title */}
         <h2 className="text-4xl md:text-5xl font-bold font-mono mb-16 text-accent-teal">
