@@ -39,20 +39,6 @@ const HUDElements = () => {
         </div>
       </div>
 
-      {/* Center HUD: Radar Display */}
-      <div className="center-hud">
-        <div className="radar-display">
-          <div className="radar-circle radar-outer" />
-          <div className="radar-circle radar-middle" />
-          <div className="radar-circle radar-inner" />
-          <div className="radar-center-dot" />
-          <div className="radar-sweep" />
-          {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="radar-blip" style={{ '--angle': `${i * 90}deg` } as React.CSSProperties} />
-          ))}
-        </div>
-      </div>
-
       {/* Floating Data Labels */}
       <div className="floating-labels">
         <div className="floating-label label-1">
