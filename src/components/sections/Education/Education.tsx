@@ -3,7 +3,7 @@ import { education } from '@/data/education';
 const Education = () => {
 
   return (
-    <section className="min-h-screen bg-dark-primary py-20">
+    <section id="education" className="min-h-screen bg-dark-secondary py-20" style={{ opacity: 0 }}>
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-4xl md:text-5xl font-bold font-mono mb-12 text-accent-teal">
           Education_Timeline

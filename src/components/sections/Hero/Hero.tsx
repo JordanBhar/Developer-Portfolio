@@ -14,7 +14,6 @@ const HeroSection = () => {
   const backgroundRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const scrollControllerRef = useRef<ScrollController | null>(null);
-  const skillsSectionRef = useRef<HTMLDivElement>(null);
 
   // === BUTTON HANDLERS ===
   const handleViewProjects = () => {
@@ -39,22 +38,32 @@ const HeroSection = () => {
     scrollControllerRef.current = new ScrollController();
 
     const aboutSection = document.getElementById('about');
+    const skillsSection = document.getElementById('skills');
+    const cloudInfraSection = document.getElementById('cloud-infra');
+    const projectsSection = document.getElementById('projects');
+    const educationSection = document.getElementById('education');
 
-    // Set initial opacity for about section
-    if (aboutSection) {
-      aboutSection.style.opacity = '0';
-    }
+    // Set initial opacity for all sections
+    [aboutSection, skillsSection, cloudInfraSection, projectsSection, educationSection].forEach(section => {
+      if (section) {
+        section.style.opacity = '0';
+      }
+    });
 
     // Initialize scroll animations after a brief delay to ensure DOM is ready
     const timer = setTimeout(() => {
-      scrollControllerRef.current?.initializeScrollAnimations(
-        sectionRef.current,
-        headlineRef.current,
-        subheadlineRef.current,
-        buttonsRef.current,
-        backgroundRef.current,
-        aboutSection
-      );
+      scrollControllerRef.current?.initializeScrollAnimations({
+        heroSectionRef: sectionRef.current,
+        headlineRef: headlineRef.current,
+        subheadlineRef: subheadlineRef.current,
+        buttonsRef: buttonsRef.current,
+        backgroundRef: backgroundRef.current,
+        aboutSectionRef: aboutSection,
+        skillsSectionRef: skillsSection,
+        cloudInfraSectionRef: cloudInfraSection,
+        projectsSectionRef: projectsSection,
+        educationSectionRef: educationSection,
+      });
     }, 100);
 
     return () => {

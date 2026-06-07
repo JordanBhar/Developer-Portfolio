@@ -6,15 +6,30 @@ gsap.registerPlugin(ScrollTrigger);
 export class ScrollController {
   private triggers: ScrollTrigger[] = [];
 
-  initializeScrollAnimations(
-    heroSectionRef: HTMLElement | null,
-    headlineRef: HTMLElement | null,
-    subheadlineRef: HTMLElement | null,
-    buttonsRef: HTMLElement | null,
-    backgroundRef: HTMLElement | null,
-    aboutSectionRef: HTMLElement | null,
-    skillsSectionRef: HTMLElement | null
-  ) {
+  initializeScrollAnimations(sections: {
+    heroSectionRef: HTMLElement | null;
+    headlineRef: HTMLElement | null;
+    subheadlineRef: HTMLElement | null;
+    buttonsRef: HTMLElement | null;
+    backgroundRef: HTMLElement | null;
+    aboutSectionRef: HTMLElement | null;
+    skillsSectionRef: HTMLElement | null;
+    cloudInfraSectionRef: HTMLElement | null;
+    projectsSectionRef: HTMLElement | null;
+    educationSectionRef: HTMLElement | null;
+  }) {
+    const {
+      heroSectionRef,
+      headlineRef,
+      subheadlineRef,
+      buttonsRef,
+      backgroundRef,
+      aboutSectionRef,
+      skillsSectionRef,
+      cloudInfraSectionRef,
+      projectsSectionRef,
+      educationSectionRef,
+    } = sections;
     if (!heroSectionRef) return;
 
     // Kill all existing triggers
@@ -118,22 +133,75 @@ export class ScrollController {
     }
 
     // === SKILLS SECTION TRANSITION ===
-    // Fade in about section as hero fades out
-
-    if (skillsSectionRef) {
-      const aboutTrigger = ScrollTrigger.create({
+    // Fade in skills section as about fades out
+    if (skillsSectionRef && aboutSectionRef) {
+      const skillsTrigger = ScrollTrigger.create({
         trigger: aboutSectionRef,
         start: 'bottom 80%',
         end: 'bottom top',
         scrub: 1.2,
         onUpdate: (self) => {
           const progress = self.progress;
-          gsap.set(aboutSectionRef, {
+          gsap.set(skillsSectionRef, {
             opacity: progress,
           });
         },
       });
-      this.triggers.push(aboutTrigger);
+      this.triggers.push(skillsTrigger);
+    }
+
+    // === CLOUD INFRASTRUCTURE SECTION TRANSITION ===
+    // Fade in cloud infra section as skills fades out
+    if (cloudInfraSectionRef && skillsSectionRef) {
+      const cloudInfraTrigger = ScrollTrigger.create({
+        trigger: skillsSectionRef,
+        start: 'bottom 80%',
+        end: 'bottom top',
+        scrub: 1.2,
+        onUpdate: (self) => {
+          const progress = self.progress;
+          gsap.set(cloudInfraSectionRef, {
+            opacity: progress,
+          });
+        },
+      });
+      this.triggers.push(cloudInfraTrigger);
+    }
+
+    // === PROJECTS SECTION TRANSITION ===
+    // Fade in projects section as cloud infra fades out
+    if (projectsSectionRef && cloudInfraSectionRef) {
+      const projectsTrigger = ScrollTrigger.create({
+        trigger: cloudInfraSectionRef,
+        start: 'bottom 80%',
+        end: 'bottom top',
+        scrub: 1.2,
+        onUpdate: (self) => {
+          const progress = self.progress;
+          gsap.set(projectsSectionRef, {
+            opacity: progress,
+          });
+        },
+      });
+      this.triggers.push(projectsTrigger);
+    }
+
+    // === EDUCATION SECTION TRANSITION ===
+    // Fade in education section as projects fades out
+    if (educationSectionRef && projectsSectionRef) {
+      const educationTrigger = ScrollTrigger.create({
+        trigger: projectsSectionRef,
+        start: 'bottom 80%',
+        end: 'bottom top',
+        scrub: 1.2,
+        onUpdate: (self) => {
+          const progress = self.progress;
+          gsap.set(educationSectionRef, {
+            opacity: progress,
+          });
+        },
+      });
+      this.triggers.push(educationTrigger);
     }
 
 
