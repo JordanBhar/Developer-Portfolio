@@ -1,0 +1,207 @@
+/* Atmospheric Background Effects */
+
+@keyframes nebulaDrift1 {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(20px, -10px);
+  }
+}
+
+@keyframes nebulaDrift2 {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-15px, 10px);
+  }
+}
+
+@keyframes nebulaDrift3 {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(10px, 15px);
+  }
+}
+
+@keyframes dustParticleFloat {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 0.6;
+  }
+}
+
+@keyframes atmosphericPulse {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* Atmosphere Background Container */
+.atmosphere-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Nebula Layers */
+.nebula-layer {
+  position: absolute;
+  opacity: 0.15;
+  mix-blend-mode: screen;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.nebula-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(ellipse at center, rgba(6, 182, 212, 0.3), transparent 70%);
+  top: 10%;
+  left: -200px;
+  animation: nebulaDrift1 20s ease-in-out infinite;
+}
+
+.nebula-2 {
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(ellipse at center, rgba(20, 184, 166, 0.25), transparent 70%);
+  bottom: -100px;
+  right: -300px;
+  animation: nebulaDrift2 25s ease-in-out infinite;
+}
+
+.nebula-3 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(ellipse at center, rgba(34, 211, 238, 0.2), transparent 70%);
+  top: 50%;
+  right: 10%;
+  animation: nebulaDrift3 30s ease-in-out infinite;
+}
+
+/* Distant Planet */
+.distant-planet {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(6, 182, 212, 0.1),
+    rgba(20, 184, 166, 0.05) 40%,
+    transparent 70%
+  );
+  border: 1px solid rgba(6, 182, 212, 0.1);
+  border-radius: 50%;
+  bottom: 20%;
+  left: 5%;
+  opacity: 0.25;
+  box-shadow: inset -50px -50px 100px rgba(0, 0, 0, 0.3),
+              0 0 100px rgba(6, 182, 212, 0.1);
+}
+
+/* Space Dust */
+.space-dust {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.dust-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(6, 182, 212, 0.4);
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: dustParticleFloat 8s ease-in-out infinite;
+}
+
+.dust-particle:nth-child(1) {
+  top: 10%;
+  left: 15%;
+  --delay: 0s;
+}
+
+.dust-particle:nth-child(2) {
+  top: 20%;
+  left: 85%;
+  --delay: 0.2s;
+}
+
+.dust-particle:nth-child(3) {
+  top: 40%;
+  left: 25%;
+  --delay: 0.4s;
+}
+
+.dust-particle:nth-child(4) {
+  top: 60%;
+  left: 75%;
+  --delay: 0.6s;
+}
+
+.dust-particle:nth-child(5) {
+  top: 15%;
+  left: 50%;
+  --delay: 0.8s;
+}
+
+.dust-particle:nth-child(6) {
+  top: 70%;
+  left: 35%;
+  --delay: 1s;
+}
+
+.dust-particle:nth-child(7) {
+  top: 45%;
+  left: 65%;
+  --delay: 1.2s;
+}
+
+.dust-particle:nth-child(8) {
+  top: 80%;
+  left: 20%;
+  --delay: 1.4s;
+}
+
+/* Atmospheric Glow */
+.atmospheric-glow {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  top: -25%;
+  left: -25%;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(6, 182, 212, 0.08) 0%,
+    transparent 70%
+  );
+  animation: atmosphericPulse 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Ensure visibility of main content */
+@supports (mix-blend-mode: screen) {
+  .atmosphere-background {
+    mix-blend-mode: overlay;
+    opacity: 0.7;
+  }
+}
